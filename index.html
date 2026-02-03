@@ -1,49 +1,160 @@
-<script>
-  const noBtn = document.getElementById("no");
-  const yesBtn = document.getElementById("yes");
-  const success = document.getElementById("success");
 
-  const texts = [
-    "No 😤",
-    "Wait 😳",
-    "Hey! 😠",
-    "Stop 😭",
-    "Nice try 😜",
-    "Not today 😝",
-    "Almost! 😬",
-    "Missed me 😎",
-    "Try harder 😈",
-    "Nope 😂"
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  function moveNoButton() {
-    const padding = 20;
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    .card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 350px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      position: relative;
+      z-index: 1;
+    }
 
-    // Move fast
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
 
-    // Change text
-    const randomText = texts[Math.floor(Math.random() * texts.length)];
-    noBtn.textContent = randomText;
-  }
+    p {
+      color: #444;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
 
-  // Desktop
-  noBtn.addEventListener("mouseover", moveNoButton);
-  noBtn.addEventListener("mousedown", moveNoButton);
+    .buttons {
+      position: relative;
+      height: 140px;
+    }
 
-  // Mobile
-  noBtn.addEventListener("touchstart", moveNoButton);
+    button {
+      padding: 12px 28px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: 0.15s;
+      user-select: none;
+    }
 
-  yesBtn.addEventListener("click", () => {
-    success.style.display = "block";
-    yesBtn.style.display = "none";
-    noBtn.style.display = "none";
-  });
-</script>
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yes:hover {
+      background: #e63950;
+    }
+
+    #no {
+      background: #ddd;
+      color: #333;
+      position: absolute;
+      left: 60%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+    }
+
+    .success {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff4d6d;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey ❤️</h1>
+    <p>Will you be my Valentine?</p>
+
+    <div class="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 💔</button>
+    </div>
+
+    <div class="success" id="success">
+      Yayyy! 🥰💕<br>
+      I knew you’d say YES!
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const success = document.getElementById("success");
+
+    const texts = [
+      "No 😤",
+      "Wait 😳",
+      "Hey! 😠",
+      "Stop 😭",
+      "Nice try 😜",
+      "Missed me 😎",
+      "Almost 😬",
+      "Nope 😂",
+      "Try harder 😈",
+      "Haha 😏"
+    ];
+
+    function moveNoButton() {
+      const padding = 20;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      noBtn.textContent = texts[Math.floor(Math.random() * texts.length)];
+    }
+
+    // Desktop
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("mousedown", moveNoButton);
+
+    // Mobile
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      success.style.display = "block";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
