@@ -1,0 +1,49 @@
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const success = document.getElementById("success");
+
+  const texts = [
+    "No 😤",
+    "Wait 😳",
+    "Hey! 😠",
+    "Stop 😭",
+    "Nice try 😜",
+    "Not today 😝",
+    "Almost! 😬",
+    "Missed me 😎",
+    "Try harder 😈",
+    "Nope 😂"
+  ];
+
+  function moveNoButton() {
+    const padding = 20;
+
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    // Move fast
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // Change text
+    const randomText = texts[Math.floor(Math.random() * texts.length)];
+    noBtn.textContent = randomText;
+  }
+
+  // Desktop
+  noBtn.addEventListener("mouseover", moveNoButton);
+  noBtn.addEventListener("mousedown", moveNoButton);
+
+  // Mobile
+  noBtn.addEventListener("touchstart", moveNoButton);
+
+  yesBtn.addEventListener("click", () => {
+    success.style.display = "block";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+  });
+</script>
